@@ -11,7 +11,7 @@ import streamlit as st
 from streamlit_folium import folium_static
 
 
-st.markdown("<h1 style='text-align: center;'>Internship Project</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Internship Project - Anomaly Detection in Flight Paths</h1>", unsafe_allow_html=True)
 
 
 df = pd.read_csv('combined_data.csv')
@@ -27,7 +27,7 @@ m = df['icao24'].nunique()
 st.markdown(f"<h3 style='text-align: center;'>There are {n} Paths of {m} Planes</h3>", unsafe_allow_html=True)
 
 
-st.markdown("<h3 style='text-align: center;'>Here you can Visualize the data</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Data Visualization</h3>", unsafe_allow_html=True)
 grouped_flights = df.groupby('callsign')
 map_center = [df['lat'].mean(), df['lon'].mean()]
 my_map = folium.Map(location=map_center, zoom_start=8)
@@ -49,7 +49,7 @@ df1 = df[df['callsign'].isin(l)]
 grouped_flights = df1.groupby('callsign')
 
 
-st.markdown("<h3 style='text-align: center;'>Let say this is a common path for multiple flights</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Let say this is a common path for multiple flights having same Departure and Arrival Points</h3>", unsafe_allow_html=True)
 map_center = [df1['lat'].mean(), df1['lon'].mean()]
 my_map = folium.Map(location=map_center, zoom_start=8)
 
@@ -66,7 +66,7 @@ for callsign, group in grouped_flights:
 folium_static(my_map)
 
 
-st.markdown("<h3 style='text-align: center;'>Now we create a Boundary over these Paths Shows as Normal Flight Path</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Now we create a Boundary over these Paths Shows as Normal Flight Area for this Route</h3>", unsafe_allow_html=True)
 all_buffers = []
 for callsign, group in grouped_flights:
     points = [Point(lon, lat) for lon, lat in zip(group['lon'], group['lat'])]

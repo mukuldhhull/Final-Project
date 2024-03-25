@@ -98,7 +98,7 @@ folium.GeoJson(
 folium_static(my_map)
 
 
-st.markdown("<h3 style='text-align: center;'>Now we check that any new flight on the same path is in the noraml region or not if not then print alert</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Now we check that any new flight on the same path is in the normal region or not if not then print alert</h3>", unsafe_allow_html=True)
 all_buffers = []
 for callsign, group in grouped_flights:
     points = [Point(lon, lat) for lon, lat in zip(group['lon'], group['lat'])]    
